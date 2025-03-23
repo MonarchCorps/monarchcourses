@@ -48,6 +48,9 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "99642d76-9ced-4a4d-b337-00ebb604badd"
       }
     },
     "owner": "monarch_corps"
