@@ -30,12 +30,17 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
+          "resizeMode": "cover",
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.643043544636-cthlpgg5r0o3gaeukh2s3m9stiple5pc"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
