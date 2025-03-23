@@ -4,49 +4,30 @@ import { onBoardingSlides } from "@/configs/onboarding";
 import { fontSizes, windowHeight, windowWidth } from "@/themes/App";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { useEffect, useRef, useState } from "react";
-import { Animated, Modal, Platform, Pressable, StatusBar, Text, TouchableOpacity, View } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useState } from "react";
 import {
-    responsiveWidth as rw,
-    responsiveHeight as rh,
-    responsiveFontSize as rf
-} from 'react-native-responsive-dimensions'
-import { AndroidAuthModal, IOSAuthModal } from "@/components/auth/AuthModal";
+    Platform,
+    Pressable,
+    StatusBar,
+    Text,
+    TouchableOpacity,
+    View
+} from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { router } from "expo-router"
 
 function OnboardingScreen() {
     const [index, setIndex] = useState(0);
     const prev = onBoardingSlides[index - 1];
     const next = onBoardingSlides[index + 1];
-    const [modalVisible, setModalVisible] = useState(false)
-    const [isModalMounted, setIsModalMounted] = useState(false);
-
-    const fadeAnim = useRef(new Animated.Value(0)).current;
-    const scaleAnim = useRef(new Animated.Value(0.8)).current;
 
     const handlePress = () => {
         if (index === 2) {
-            setModalVisible(true)
+            router.replace("/(auth)/sign-in")
         } else {
             setIndex(index + 1)
         }
     }
-    useEffect(() => {
-        if (modalVisible) {
-            setIsModalMounted(true);
-            Animated.parallel([
-                Animated.timing(fadeAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
-                Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true }),
-            ]).start();
-        } else if (isModalMounted) {
-            Animated.parallel([
-                Animated.timing(fadeAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
-                Animated.timing(scaleAnim, { toValue: 0.5, duration: 200, useNativeDriver: true }),
-            ]).start(({ finished }) => {
-                if (finished) setIsModalMounted(false);
-            });
-        }
-    }, [modalVisible]);
 
     return (
         <GestureHandlerRootView className={`flex-1`}>
@@ -78,20 +59,20 @@ function OnboardingScreen() {
                 className={`absolute`}
                 style={{
                     flexDirection: "row",
-                    bottom: rh(8),
-                    left: rw(6),
-                    gap: rw(2)
+                    bottom: windowHeight(37),
+                    left: windowWidth(20),
+                    gap: windowWidth(10)
                 }}>
                 {Array.from({ length: onBoardingSlides.length }).map((_, i) => (
                     <TouchableOpacity
                         onPress={() => setIndex(i)}
                         key={i}
                         style={{
-                            height: rh(1.2),
-                            width: rw(12),
+                            height: windowHeight(7),
+                            width: windowWidth(45),
                             backgroundColor: i === index ? "white" : "rgba(255, 255, 255, 0.5)",
-                            borderRadius: rw(4),
                         }}
+                        className="rounded-md"
                     />
                 ))}
             </View>
@@ -104,11 +85,11 @@ function OnboardingScreen() {
                         alignItems: "center",
                         justifyContent: "center",
                         right: windowWidth(25),
-                        bottom: windowHeight(50),
+                        bottom: windowHeight(35),
                         marginTop: windowHeight(30),
                         width: windowWidth(140),
-                        height: windowHeight(37),
-                        borderRadius: windowWidth(20),
+                        height: windowHeight(38),
+                        borderRadius: 10
                     }}
                 >
                     <Pressable
@@ -117,51 +98,25 @@ function OnboardingScreen() {
                     >
                         <Text
                             className={`text-white font-bold`}
-                            style={{ fontSize: fontSizes.FONT22 }}>Next</Text>
+                            style={{ fontSize: fontSizes.FONT20 }}>Next</Text>
                     </Pressable>
                 </LinearGradient>
             )}
 
             {index < onBoardingSlides.length - 1 && (
                 <TouchableOpacity
-                    className='absolute items-center justify-center z-[1000]'
+                    className='absolute items-center justify-center z-[1000] rounded-full'
                     style={{
-                        width: rw(10),
-                        height: rw(10),
-                        borderRadius: rw(20),
+                        width: windowWidth(50),
+                        height: windowWidth(50),
                         backgroundColor: "rgba(255, 255, 255, 0.3)",
-                        right: rw(2),
-                        top: Platform.OS === "ios" ? rh(48) : rh(51.5),
+                        right: windowWidth(10),
+                        top: Platform.OS === "ios" ? windowHeight(315) : windowHeight(348),
                     }}
                     onPress={handlePress}
                 >
-                    <Ionicons name="chevron-forward-outline" size={rf(3)} color="black" />
+                    <Ionicons name="chevron-forward-outline" size={fontSizes.FONT26} color="black" />
                 </TouchableOpacity>
-            )}
-
-            {isModalMounted && Platform.OS === 'android' && (
-                <Pressable
-                    className="flex-1"
-                    onPress={() => setModalVisible(false)}
-                >
-                    <AndroidAuthModal fadeAnim={fadeAnim} />
-                </Pressable>
-            )}
-
-            {Platform.OS === 'ios' && (
-                <Modal
-                    animationType="fade"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => setModalVisible(false)}
-                >
-                    <Pressable
-                        className="flex-1"
-                        onPress={() => setModalVisible(false)}
-                    >
-                        <IOSAuthModal />
-                    </Pressable>
-                </Modal>
             )}
             <StatusBar backgroundColor='#161622' />
         </GestureHandlerRootView>
