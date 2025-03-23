@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "monarchcourses",
-    "slug": "monarchcourses",
+    "slug": "Courses",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -48,9 +48,6 @@
     "extra": {
       "router": {
         "origin": false
-      },
-      "eas": {
-        "projectId": "5a91ecf6-d90e-4d7e-b0e4-61281e6a4d45"
       }
     },
     "owner": "monarch_corps"
