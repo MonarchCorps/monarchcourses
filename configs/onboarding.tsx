@@ -1,10 +1,6 @@
-import { IsIPAD } from "@/themes/App";
+import { IsIPAD, windowHeight, windowWidth } from "@/themes/App";
 import { OnboardingSlidesTypes } from "@/types/Onboarding";
 import { Image } from "react-native";
-import {
-    responsiveWidth as rw,
-    responsiveHeight as rh,
-} from "react-native-responsive-dimensions";
 
 import One from "@/assets/images/onboarding/1.png";
 import Two from "@/assets/images/onboarding/2.png";
@@ -18,8 +14,8 @@ export const onBoardingSlides: OnboardingSlidesTypes[] = [
             <Image
                 source={One}
                 style={{
-                    width: IsIPAD ? rw(45) : rw(90),
-                    height: IsIPAD ? rh(40) : rh(45),
+                    width: IsIPAD ? windowWidth(310) : windowWidth(430),
+                    height: IsIPAD ? windowHeight(260) : windowHeight(300),
                     resizeMode: "contain",
                 }}
             />
@@ -34,8 +30,8 @@ export const onBoardingSlides: OnboardingSlidesTypes[] = [
             <Image
                 source={Two}
                 style={{
-                    width: IsIPAD ? rw(45) : rw(90),
-                    height: IsIPAD ? rh(40) : rh(45),
+                    width: IsIPAD ? windowWidth(310) : windowWidth(430),
+                    height: IsIPAD ? windowHeight(260) : windowHeight(300),
                     resizeMode: "contain",
                 }}
             />
@@ -50,8 +46,8 @@ export const onBoardingSlides: OnboardingSlidesTypes[] = [
             <Image
                 source={Three}
                 style={{
-                    width: IsIPAD ? rw(45) : rw(90),
-                    height: IsIPAD ? rh(40) : rh(45),
+                    width: IsIPAD ? windowWidth(310) : windowWidth(430),
+                    height: IsIPAD ? windowHeight(260) : windowHeight(300),
                     resizeMode: "contain",
                 }}
             />

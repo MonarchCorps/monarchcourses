@@ -1,11 +1,7 @@
 import { HEIGHT, WIDTH } from '@/constants'
-import { fontSizes, SCREEN_WIDTH } from '@/themes/App'
+import { fontSizes, SCREEN_WIDTH, windowHeight, windowWidth } from '@/themes/App'
 import { SlideProps } from '@/types/Slider'
 import { View, Text } from 'react-native'
-import {
-    responsiveWidth as rw,
-    responsiveHeight as rh,
-} from 'react-native-responsive-dimensions'
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg'
 
 function Slide({ slide }: SlideProps) {
@@ -23,20 +19,20 @@ function Slide({ slide }: SlideProps) {
 
             <View className="absolute inset-0 items-center"
                 style={{
-                    paddingTop: rh(16),
+                    paddingTop: windowHeight(115),
                 }}
             >
                 <View>{slide.image}</View>
                 <View>
                     <View style={{
                         width: SCREEN_WIDTH * 1,
-                        paddingHorizontal: rw(6),
-                        paddingTop: rh(1.2)
+                        paddingHorizontal: windowWidth(30),
+                        paddingTop: windowHeight(14)
                     }}>
                         <Text
                             className={`font-psemibold text-[#05030D]`}
                             style={{
-                                fontSize: fontSizes.FONT30,
+                                fontSize: fontSizes.FONT28,
                                 fontWeight: "600"
                             }}>
                             {slide.title}
@@ -45,7 +41,7 @@ function Slide({ slide }: SlideProps) {
                         <Text
                             className={`font-plight text-[#3E3B54]`}
                             style={{
-                                paddingVertical: rh(0.5),
+                                paddingVertical: windowHeight(12),
                                 fontSize: fontSizes.FONT18,
                             }}>
                             {slide.subTitle}
