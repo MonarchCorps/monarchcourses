@@ -10,14 +10,14 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.monarch-corps.monarchcourses"
+      "bundleIdentifier": "com.monarchcorps.monarchcourses"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon-android.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.monarch_corps.monarchcourses"
+      "package": "com.monarchcorps.monarchcourses"
     },
     "web": {
       "bundler": "metro",
