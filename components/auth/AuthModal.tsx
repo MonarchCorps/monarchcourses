@@ -6,23 +6,34 @@ import {
 } from 'react-native-responsive-dimensions'
 import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import { makeRedirectUri, useAuthRequest } from "expo-auth-session"
+import { useEffect } from "react";
 
 function Content() {
 
     const configureGoogleSignIn = () => {
         if (Platform.OS === "ios") {
             GoogleSignin.configure({
-                iosClientId: process.env.EXPO_PUBLIC_GOOGLE_API_KEY
+                iosClientId: "com.googleusercontent.apps.506775623209-8kdls9p008a88jteavher3vphueq01uv"
             })
         } else {
             GoogleSignin.configure({
-                webClientId: ""
+                webClientId: process.env.EXPO_PUBLIC_WEB_CLIENT_GOOGLE_API_KEY
             })
         }
     }
 
-    const googleSignIn = async () => {
+    useEffect(() => {
+        configureGoogleSignIn()
+    }, [])
 
+    const googleSignIn = async () => {
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            console.log(userInfo)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -43,7 +54,7 @@ function Content() {
                 flexDirection: 'row',
                 gap: windowWidth(20)
             }}>
-                <Pressable>
+                <Pressable onPress={googleSignIn}>
                     <Image
                         source={require("@/assets/images/onboarding/google.png")}
                         style={{
