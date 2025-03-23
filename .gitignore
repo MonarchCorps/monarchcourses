@@ -21,7 +21,7 @@ expo-env.d.ts
 /android
 text.md
 .env
-
+.vscode
 # Metro
 .metro-health-check*
 
