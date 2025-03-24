@@ -83,3 +83,23 @@ export const removeAccessToken = async (): Promise<void> => {
         console.error('Error removing access token:', error);
     }
 };
+
+
+export const removeUserDetails = async (): Promise<void> => {
+    try {
+        await SecureStore.deleteItemAsync("course_platform_user_details");
+    } catch (error) {
+        console.error("Error removing user details:", error);
+    }
+}
+
+
+export const clearStorage = async (): Promise<void> => {
+    try {
+        await removeUserDetails()
+        await removeAccessToken()
+        await removeRefreshToken()
+    } catch (error) {
+        console.error("Error clearing storage", error)
+    }
+}
