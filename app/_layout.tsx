@@ -3,6 +3,10 @@ import { SplashScreen, Stack } from "expo-router";
 import { useFonts } from 'expo-font';
 import '../global.css'
 import { useEffect } from "react";
+import QueryClientConfig from "@/configs/queryClient";
+import { RootSiblingParent } from 'react-native-root-siblings';
+import { ToastProvider } from "@/context/ToastContext";
+import { AuthProvider } from "@/context/AuthContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,13 +33,21 @@ export default function RootLayout() {
 	if (!fontsLoaded && !error) return null;
 
 	return (
-		<ThemeProvider>
-			<Stack screenOptions={{
-				headerShown: false
-			}}>
-				<Stack.Screen name="index" />
-				<Stack.Screen name="/(routes)/onboarding/index" />
-			</Stack>
-		</ThemeProvider>
+		<RootSiblingParent>
+			<ToastProvider>
+				<ThemeProvider>
+					<QueryClientConfig>
+						<AuthProvider>
+							<Stack screenOptions={{
+								headerShown: false
+							}}>
+								<Stack.Screen name="index" />
+								<Stack.Screen name="/(routes)/onboarding/index" />
+							</Stack>
+						</AuthProvider>
+					</QueryClientConfig>
+				</ThemeProvider>
+			</ToastProvider>
+		</RootSiblingParent>
 	);
 }
