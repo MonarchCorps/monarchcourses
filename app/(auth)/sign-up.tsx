@@ -2,18 +2,65 @@ import {
     View,
     Text,
     Image,
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
     Pressable,
     StyleSheet,
+    TextInput,
 } from 'react-native';
 import { Link } from 'expo-router';
 import FormInput from '@/components/form/FormInput';
 import { fontSizes, IsIPAD, windowHeight, windowWidth } from '@/themes/App';
 import AuthWrapper from './components/AuthWrapper';
+import { useRegisterUser } from '@/store/slices/auth/authSlice';
+import { useRef, useState } from 'react';
+import { AuthFormProps } from '@/types/Auth';
+import Loader from '@/components/loader/loader';
+import { useToast } from '@/context/ToastContext';
+import useAuth from '@/hooks/useAuth';
+import { storeAccessToken, storeRefreshToken } from '@/helper/token';
 
 function SignUp() {
+
+    const { setAuth } = useAuth()
+    const { mutate: registerUserMutate, isPending } = useRegisterUser()
+    const [formData, setFormData] = useState<AuthFormProps>({
+        email: "",
+        password: ""
+    });
+
+    const { showToast } = useToast();
+
+    const emailRef = useRef<TextInput>(null);
+    const passwordRef = useRef<TextInput>(null);
+
+    const handleRegister = (): void => {
+        registerUserMutate(formData, {
+            onSuccess: async (response) => {
+                if (response?.user?._id) {
+                    await storeAccessToken(response?.accessToken)
+                    await storeRefreshToken(response?.refreshToken)
+                    setAuth({
+                        user: { ...response.user }
+                    })
+                    showToast({
+                        title: "Account created",
+                        actionLabel: 'Dismiss',
+                        error: false
+                    });
+                    setFormData({
+                        email: "",
+                        password: ""
+                    })
+                }
+            },
+            onError: (error) => {
+                showToast({
+                    title: error.response?.data?.message || "Something went wrong",
+                    actionLabel: 'Dismiss',
+                    error: true
+                });
+            }
+        })
+    }
 
     return (
         <AuthWrapper>
@@ -29,21 +76,48 @@ function SignUp() {
                 </Text>
             </View>
 
-            <View className='min-w-full flex flex-col gap-y-6' style={styles.formContainer}>
+            <View className="min-w-full flex flex-col gap-y-6" style={styles.formContainer}>
                 <FormInput
                     label="Email"
                     keyboardType="email-address"
+                    value={formData.email}
+                    inputRef={emailRef}
+                    returnKeyType="next"
+                    onChangeText={(e) =>
+                        setFormData((prev) => ({ ...prev, email: e }))
+                    }
+                    onSubmitEditing={() => {
+                        passwordRef.current?.focus();
+                    }}
                 />
+
                 <FormInput
                     label="Password"
                     isPassword
+                    value={formData.password}
+                    inputRef={passwordRef}
+                    returnKeyType="done"
+                    onChangeText={(e) =>
+                        setFormData((prev) => ({ ...prev, password: e }))
+                    }
+                    onSubmitEditing={() => {
+                        passwordRef.current?.blur();
+                    }}
                 />
             </View>
 
-            <Pressable className='w-full bg-[#021940] items-center' style={styles.button}>
-                <Text className='font-pmedium text-[#fff]' style={styles.buttonText}>
-                    Sign Up
-                </Text>
+            <Pressable
+                className='w-full bg-[#021940] items-center'
+                style={styles.button}
+                onPress={handleRegister}
+            >
+                {isPending ? (
+                    <Loader />
+                ) : (
+                    <Text className='font-pmedium text-[#fff]' style={styles.buttonText}>
+                        Sign Up
+                    </Text>
+                )}
             </Pressable>
 
             <View className='flex-row items-center gap-x-5' style={styles.alternateContainer}>
