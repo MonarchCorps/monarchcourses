@@ -1,16 +1,4 @@
-export type KeyboardType = "default"
-    | "number-pad"
-    | "decimal-pad"
-    | "numeric"
-    | "email-address"
-    | "phone-pad"
-    | "url"
-    | "visible-password"
-    | "ascii-capable"
-    | "numbers-and-punctuation"
-    | "name-phone-pad"
-    | "twitter"
-    | "web-search";
+import { KeyboardType, ReturnKeyTypeOptions, TextInput } from "react-native";
 
 export type keyboardAppearance = "default" | "dark" | "light" | undefined
 
@@ -26,4 +14,7 @@ export type FormInputProps = {
     keyboardAppearance?: keyboardAppearance;
     maxLength?: number;
     error?: boolean;
+    returnKeyType?: ReturnKeyTypeOptions;
+    inputRef?: React.RefObject<TextInput>;
+    onSubmitEditing?: () => void;
 }
