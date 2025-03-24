@@ -2,7 +2,6 @@ import { Image, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-n
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { windowHeight, windowWidth } from '@/themes/App'
-import { StatusBar } from 'expo-status-bar'
 import authImage from '@/assets/images/icon.png';
 
 const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -34,7 +33,6 @@ const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
                         />
                     </View>
                     {children}
-                    <StatusBar backgroundColor='#161622' style='light' />
                 </ScrollView>
             </KeyboardAvoidingView>
         </SafeAreaView>
