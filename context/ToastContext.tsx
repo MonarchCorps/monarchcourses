@@ -28,7 +28,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
         // Auto dismiss after 4s
         setTimeout(() => {
             setToasts(prev => prev.filter(t => t.id !== id));
-        }, 4000);
+        }, 2000);
     };
 
     const removeToast = (id: number) => {
