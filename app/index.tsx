@@ -1,23 +1,14 @@
-import { getAccessToken } from "@/helper/token";
+import useAuth from "@/hooks/useAuth";
 import { Redirect } from "expo-router";
-import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 export default function Index() {
 
-	const [loggedInUser, setLoggedInUser] = useState(false)
-	const [loading, setLoading] = useState(false)
-
-	useEffect(() => {
-		(async () => { // used a self invoking function since getAccessToken returns a promise
-			const accessToken = await getAccessToken()
-			setLoggedInUser(accessToken ? true : false)
-		})()
-	}), []
+	const { loading, auth } = useAuth()
 
 	return (
 		loading
-			? <Text>Hey</Text>
-			: <Redirect href={!loggedInUser ? "/(routes)/onboarding" : "/(tabs)"} />
+			? <View></View>
+			: <Redirect href={!auth?.user.id ? "/(routes)/onboarding" : "/(tabs)"} />
 	);
 }
