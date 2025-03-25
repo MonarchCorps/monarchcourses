@@ -6,9 +6,14 @@ import {
     StyleSheet,
     TextInput,
 } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import FormInput from '@/components/form/FormInput';
-import { fontSizes, IsIPAD, windowHeight, windowWidth } from '@/themes/App';
+import {
+    fontSizes,
+    IsIPAD,
+    windowHeight,
+    windowWidth
+} from '@/themes/App';
 import AuthWrapper from './components/AuthWrapper';
 import { useRegisterUser } from '@/store/slices/auth/authSlice';
 import { useRef, useState } from 'react';
@@ -16,7 +21,10 @@ import { AuthFormProps } from '@/types/Auth';
 import Loader from '@/components/loader/loader';
 import { useToast } from '@/context/ToastContext';
 import useAuth from '@/hooks/useAuth';
-import { storeAccessToken, storeRefreshToken } from '@/helper/token';
+import {
+    storeAccessToken,
+    storeRefreshToken
+} from '@/helper/token';
 
 function SignUp() {
 
@@ -51,6 +59,7 @@ function SignUp() {
                         email: "",
                         password: ""
                     })
+                    router.replace("/(tabs)")
                 }
             },
             onError: (error) => {

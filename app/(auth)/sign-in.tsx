@@ -6,16 +6,24 @@ import {
     StyleSheet,
     TextInput,
 } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import FormInput from '@/components/form/FormInput';
-import { fontSizes, IsIPAD, windowHeight, windowWidth } from '@/themes/App';
+import {
+    fontSizes,
+    IsIPAD,
+    windowHeight,
+    windowWidth
+} from '@/themes/App';
 import AuthWrapper from './components/AuthWrapper';
 import { useLoginUser } from '@/store/slices/auth/authSlice';
 import { useRef, useState } from 'react';
 import { AuthFormProps } from '@/types/Auth';
 import { useToast } from '@/context/ToastContext';
 import Loader from '@/components/loader/loader';
-import { storeAccessToken, storeRefreshToken } from '@/helper/token';
+import {
+    storeAccessToken,
+    storeRefreshToken
+} from '@/helper/token';
 import useAuth from '@/hooks/useAuth';
 
 function SignIn() {
@@ -50,6 +58,7 @@ function SignIn() {
                         email: "",
                         password: ""
                     })
+                    router.replace("/(tabs)")
                 }
             },
             onError: (error) => {
