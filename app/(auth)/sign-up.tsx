@@ -35,7 +35,8 @@ function SignUp() {
     const handleRegister = (): void => {
         registerUserMutate(formData, {
             onSuccess: async (response) => {
-                if (response?.user?._id) {
+                console.log(response.user)
+                if (response?.user?.id) {
                     await storeAccessToken(response?.accessToken)
                     await storeRefreshToken(response?.refreshToken)
                     setAuth({

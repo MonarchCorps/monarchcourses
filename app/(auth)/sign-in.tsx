@@ -35,7 +35,7 @@ function SignIn() {
     const handleLogin = (): void => {
         loginUserMutate(formData, {
             onSuccess: async (response) => {
-                if (response?.user?._id) {
+                if (response?.user?.id) {
                     await storeAccessToken(response?.accessToken)
                     await storeRefreshToken(response?.refreshToken)
                     setAuth({

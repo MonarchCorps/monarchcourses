@@ -7,7 +7,7 @@ export type AuthData = {
     accessToken: string;
     refreshToken: string;
     user: {
-        _id: string;
+        id: string;
         email: string;
     };
 };
