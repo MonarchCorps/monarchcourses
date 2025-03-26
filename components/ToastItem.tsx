@@ -1,4 +1,3 @@
-import { useToast } from '@/context/ToastContext';
 import { useEffect, useRef } from 'react';
 import {
     Animated,
@@ -24,10 +23,9 @@ const ToastItem = ({
     actionLabel,
     onAction,
     index,
-    error = false
-}: ToastData & { index: number }) => {
-    const { removeToast } = useToast();
-
+    error = false,
+    removeToast,
+}: ToastData & { index: number; removeToast: (id: number) => void }) => {
     const translateY = useRef(new Animated.Value(-50)).current;
     const opacity = useRef(new Animated.Value(0)).current;
 
@@ -69,7 +67,7 @@ const ToastItem = ({
             </View>
 
             {actionLabel && (
-                <Pressable style={styles.actionButton} onPress={handleAction} className=''>
+                <Pressable style={styles.actionButton} onPress={handleAction}>
                     <Text style={styles.actionText}>{actionLabel}</Text>
                 </Pressable>
             )}

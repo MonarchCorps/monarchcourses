@@ -1,12 +1,7 @@
-import ToastItem, { ToastData } from '@/components/ToastItem';
+import { ToastData } from '@/components/ToastItem';
+import ToastStack from '@/components/ToastStack';
 import { ToastContextType } from '@/types/Toast';
-import {
-    createContext,
-    useContext,
-    useState,
-    ReactNode
-} from 'react';
-import { View, StyleSheet } from 'react-native';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
@@ -21,26 +16,20 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
 
         setToasts(prev => [newToast, ...prev]);
 
-        // Auto dismiss after 4s
+        // Auto dismiss after 2s
         setTimeout(() => {
-            setToasts(prev => prev.filter(t => t.id !== id));
+            removeToast(id);
         }, 2000);
     };
 
     const removeToast = (id: number) => {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
+        setToasts(prev => prev.filter(t => t.id !== id));
     };
 
     return (
-        <ToastContext.Provider value={{ showToast, removeToast }}>
+        <ToastContext.Provider value={{ showToast }}>
             {children}
-
-            {/* Toast Stack */}
-            <View style={styles.toastContainer}>
-                {toasts.map((toast, index) => (
-                    <ToastItem key={toast.id} {...toast} index={index} />
-                ))}
-            </View>
+            <ToastStack toasts={toasts} removeToast={removeToast} />
         </ToastContext.Provider>
     );
 };
@@ -52,13 +41,3 @@ export const useToast = () => {
     }
     return context;
 };
-
-const styles = StyleSheet.create({
-    toastContainer: {
-        position: 'absolute',
-        top: 50,
-        width: '100%',
-        paddingHorizontal: 16,
-        zIndex: 10000,
-    },
-});
