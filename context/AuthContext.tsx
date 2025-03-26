@@ -1,16 +1,13 @@
+import { AuthContextType, SimplifiedAuthData } from "@/types/Auth";
 import * as SecureStore from "expo-secure-store";
-import React, { createContext, useState, useEffect, ReactNode } from "react";
-import { AuthData } from "@/types/Auth";
+import {
+    createContext,
+    useState,
+    useEffect,
+    ReactNode
+} from "react";
 
-export type SimplifiedAuthData = Omit<AuthData, "accessToken" | "refreshToken">;
-
-export interface AuthContextProps {
-    auth: SimplifiedAuthData | null;
-    setAuth: (newAuth: SimplifiedAuthData) => Promise<void>;
-    loading: boolean;
-}
-
-export const AuthContext = createContext<AuthContextProps>({
+export const AuthContext = createContext<AuthContextType>({
     auth: null,
     setAuth: async () => { },
     loading: false,
