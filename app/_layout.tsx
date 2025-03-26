@@ -1,4 +1,6 @@
 import { ThemeProvider } from "@/context/ThemeContext";
+import "@/global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { SplashScreen, Stack } from "expo-router";
 import { useFonts } from 'expo-font';
 import '../global.css'
@@ -34,23 +36,24 @@ export default function RootLayout() {
 	if (!fontsLoaded && !error) return null;
 
 	return (
-		<RootSiblingParent>
-			<ToastProvider>
-				<ThemeProvider>
-					<QueryClientConfig>
-						<AuthProvider>
-							<TokenExpiredProvider>
-								<Stack screenOptions={{
-									headerShown: false
-								}}>
-									<Stack.Screen name="index" />
-									<Stack.Screen name="/(routes)/onboarding/index" />
-								</Stack>
-							</TokenExpiredProvider>
-						</AuthProvider>
-					</QueryClientConfig>
-				</ThemeProvider>
-			</ToastProvider>
-		</RootSiblingParent>
+		<GluestackUIProvider mode="light">
+			<RootSiblingParent>
+				<QueryClientConfig>
+					<AuthProvider>
+						<ToastProvider>
+							<ThemeProvider>
+								<TokenExpiredProvider>
+									<Stack screenOptions={{
+										headerShown: false
+									}}>
+										<Stack.Screen name="index" />
+									</Stack>
+								</TokenExpiredProvider>
+							</ThemeProvider>
+						</ToastProvider>
+					</AuthProvider>
+				</QueryClientConfig>
+			</RootSiblingParent>
+		</GluestackUIProvider>
 	);
 }
