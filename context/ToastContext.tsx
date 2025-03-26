@@ -1,4 +1,5 @@
 import ToastItem, { ToastData } from '@/components/ToastItem';
+import { ToastContextType } from '@/types/Toast';
 import {
     createContext,
     useContext,
@@ -6,11 +7,6 @@ import {
     ReactNode
 } from 'react';
 import { View, StyleSheet } from 'react-native';
-
-interface ToastContextType {
-    showToast: (toast: Omit<ToastData, 'id'>) => void;
-    removeToast: (id: number) => void,
-}
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
