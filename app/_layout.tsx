@@ -7,6 +7,7 @@ import QueryClientConfig from "@/configs/queryClient";
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { ToastProvider } from "@/context/ToastContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { TokenExpiredProvider } from "@/context/TokenExpiredContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,12 +39,14 @@ export default function RootLayout() {
 				<ThemeProvider>
 					<QueryClientConfig>
 						<AuthProvider>
-							<Stack screenOptions={{
-								headerShown: false
-							}}>
-								<Stack.Screen name="index" />
-								<Stack.Screen name="/(routes)/onboarding/index" />
-							</Stack>
+							<TokenExpiredProvider>
+								<Stack screenOptions={{
+									headerShown: false
+								}}>
+									<Stack.Screen name="index" />
+									<Stack.Screen name="/(routes)/onboarding/index" />
+								</Stack>
+							</TokenExpiredProvider>
 						</AuthProvider>
 					</QueryClientConfig>
 				</ThemeProvider>

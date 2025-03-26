@@ -1,14 +1,25 @@
 import useAuth from "@/hooks/useAuth";
+import { View } from "react-native";
+import TabsComponent from "./(tabs)";
+import OnboardComponent from "./(routes)/onboarding";
+import { useTokenExpired } from "@/hooks/useTokenExpired";
 import { Redirect } from "expo-router";
-import { Text, View } from "react-native";
 
 export default function Index() {
 
 	const { loading, auth } = useAuth()
+	const { isTokenExpired } = useTokenExpired()
+	{/* <Redirect href={!auth?.user.id ? "/(routes)/onboarding" : "/(tabs)"} /> */ }
 
 	return (
-		loading
-			? <View></View>
-			: <Redirect href={!auth?.user.id ? "/(routes)/onboarding" : "/(tabs)"} />
+		isTokenExpired ?
+			<Redirect href="/sign-in" />
+			: loading
+				? <View className="size-full bg-black"></View>
+				: !auth?.user.id ? (
+					<OnboardComponent />
+				) : (
+					<TabsComponent />
+				)
 	);
 }
