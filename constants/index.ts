@@ -122,3 +122,20 @@ export const FAQData = [
             "For security reasons, course videos cannot be downloaded. However, you have lifetime access to each purchased course and can watch them anytime, anywhere with your account",
     },
 ];
+
+
+export const LightTheme = {
+    dark: false,
+    colors: {
+        background: "#ffffff",
+        text: "#000000",
+    },
+};
+
+export const DarkTheme = {
+    dark: true,
+    colors: {
+        background: "#000000",
+        text: "#ffffff",
+    },
+};
