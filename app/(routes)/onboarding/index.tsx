@@ -1,9 +1,9 @@
 import OnboardingScreen from '@/screens/onboarding/OnboardingScreen'
 
-function index() {
+function OnboardComponent() {
     return (
         <OnboardingScreen />
     )
 }
 
-export default index
+export default OnboardComponent

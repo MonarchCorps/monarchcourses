@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-function index() {
+function TabsComponent() {
     return (
         <SafeAreaView>
             <Text>Tabs</Text>
@@ -9,4 +9,4 @@ function index() {
     )
 }
 
-export default index
+export default TabsComponent
