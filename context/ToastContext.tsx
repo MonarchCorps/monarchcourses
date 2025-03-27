@@ -1,5 +1,5 @@
-import { ToastData } from '@/components/ToastItem';
-import ToastStack from '@/components/ToastStack';
+import { ToastData } from '@/components/common/ToastItem';
+import ToastStack from '@/components/common/ToastStack';
 import { ToastContextType } from '@/types/Toast';
 import { createContext, useContext, useState, ReactNode } from 'react';
 

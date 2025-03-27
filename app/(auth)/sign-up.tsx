@@ -14,7 +14,7 @@ import {
     windowHeight,
     windowWidth
 } from '@/themes/App';
-import AuthWrapper from './components/AuthWrapper';
+import AuthWrapper from '../../components/auth/AuthWrapper';
 import { useRegisterUser } from '@/store/slices/auth/authSlice';
 import { useRef, useState } from 'react';
 import { AuthFormProps } from '@/types/Auth';
