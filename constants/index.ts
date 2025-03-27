@@ -1,3 +1,4 @@
+import { Banner } from "@/types/Banner";
 import { Dimensions } from "react-native";
 
 export enum Side {
@@ -15,7 +16,7 @@ export const LEFT_SNAP_POINTS = [MARGIN_WIDTH, PREV];
 export const RIGHT_SNAP_POINTS = [NEXT, WIDTH - MARGIN_WIDTH];
 
 // banner data
-export const bannerData = [
+export const bannerData: Banner[] = [
     {
         image:
             "https://res.cloudinary.com/dkg6jv4l0/image/upload/v1731710065/Let_s-build-a-production-ready-LMS-Mobile-App-with-Expo-React-Native_ahqpvx.png",
