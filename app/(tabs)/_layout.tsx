@@ -34,12 +34,12 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "home" : "home-outline"}
-                                color={focused ? "#5900BC" : "gray"}
+                                color={focused ? "#021940" : "gray"}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#5900BC" : "gray",
+                                    color: focused ? "#021940" : "gray",
                                     fontSize: 12,
                                     marginTop: 4
                                 }}
@@ -61,12 +61,12 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "book" : "book-outline"}
-                                color={focused ? "#5900BC" : "gray"}
+                                color={focused ? "#021940" : "gray"}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#5900BC" : "gray",
+                                    color: focused ? "#021940" : "gray",
                                     fontSize: 12,
                                     marginTop: 4
                                 }}
@@ -80,12 +80,12 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name="create/index"
                 options={{
-                    tabBarIcon: ({ focused }) => (
+                    tabBarIcon: () => (
                         <View className="items-center justify-center rounded-full"
                             style={{
                                 height: 60,
                                 width: 60,
-                                backgroundColor: "#5900BC",
+                                backgroundColor: "#021940",
                                 marginBottom: 30
                             }}>
                             <Ionicons
@@ -109,12 +109,12 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "person" : "person-outline"}
-                                color={focused ? "#5900BC" : "gray"}
+                                color={focused ? "#021940" : "gray"}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#5900BC" : "gray",
+                                    color: focused ? "#021940" : "gray",
                                     fontSize: 12,
                                     marginTop: 4
                                 }}
@@ -136,12 +136,12 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "document-text" : "document-text-outline"}
-                                color={focused ? "#5900BC" : "gray"}
+                                color={focused ? "#021940" : "gray"}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#5900BC" : "gray",
+                                    color: focused ? "#021940" : "gray",
                                     fontSize: 12,
                                     marginTop: 4
                                 }}
