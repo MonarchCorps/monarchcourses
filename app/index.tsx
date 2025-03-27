@@ -19,7 +19,8 @@ export default function Index() {
 				: !auth?.user.id ? (
 					<OnboardComponent />
 				) : (
-					<TabsComponent />
+					// <TabsComponent />
+					<Redirect href="/(tabs)" />
 				)
 	);
 }
