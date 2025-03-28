@@ -16,7 +16,7 @@ import {
     Text,
     StyleSheet,
     StatusBar,
-    Pressable, TextInput
+    Pressable, TextInput,
 } from 'react-native'
 import {
     moderateScale,
@@ -40,7 +40,9 @@ export default function WelcomeHeader() {
             end={theme.dark ? { x: 0, y: 1 } : { x: 0, y: 1 }}
             style={[styles.headerWrapper]}
         >
-            <StatusBar barStyle={"light-content"} />
+            <StatusBar
+                barStyle={IsAndroid ? "dark-content" : "light-content"}
+            />
 
             <View className='flex-row justify-between' style={{
                 paddingTop:
@@ -67,7 +69,7 @@ export default function WelcomeHeader() {
                 <View className='flex-row'>
                     <Pressable>
                         <View
-                            className={`relative items-center justify-center rounded-md dark:bg-transparent dark:border-1 dark:border-white bg-[#004FAB]`}
+                            className={`relative items-center justify-center rounded-md ${theme.dark ? "bg-transparent border-1 border-white" : " bg-[#004FAB]"}`}
                             style={{
                                 width: scale(45),
                                 height: scale(45)
@@ -95,7 +97,7 @@ export default function WelcomeHeader() {
             </View>
             <View className='relative'>
                 <TextInput
-                    className='bg-white color-black font-pregular dark:bg-transparent dark:border-1 dark:border-white dark:color-white'
+                    className={`font-pregular ${theme.dark ? "border-1 border-white text-white bg-transparent" : "bg-white color-black"}`}
                     placeholder='Search for Topics, Courses'
                     placeholderTextColor={theme.dark ? "#fff" : "#000"}
                     style={[styles.input]}

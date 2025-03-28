@@ -33,7 +33,7 @@ export default function HomeScreen() {
                     <View className="flex-row items-center" style={{
                         marginTop: verticalScale(5)
                     }}>
-                        <Text className="font-pmedium text-black dark:text-white" style={{
+                        <Text className={`font-pmedium ${theme.dark ? "text-white" : "text-black"}`} style={{
                             fontSize: fontSizes.FONT35
                         }}>
                             Popular{' '}
@@ -53,7 +53,7 @@ export default function HomeScreen() {
                             borderRadius: 100
                         }} />
                         <Text
-                            className="font-pregular text-black dark:text-white"
+                            className={`font-pregular ${theme.dark ? "text-white" : "text-black"}`}
                             style={{
                                 fontSize: fontSizes.FONT18,
                                 paddingLeft: windowWidth(5)
