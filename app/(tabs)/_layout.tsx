@@ -1,32 +1,89 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { IsAndroid, IsIOS, windowWidth } from "@/themes/App";
+import { IsAndroid, IsIOS, IsIPAD, windowWidth } from "@/themes/App";
+import useTheme from "@/hooks/useTheme";
+import { scale, verticalScale } from "react-native-size-matters";
+import { BlurView } from "expo-blur"
 
 export default function TabsLayout() {
+    const { theme } = useTheme()
+
     return (
         <Tabs screenOptions={{
             headerShown: false,
             tabBarShowLabel: false,
             tabBarStyle: {
-                // position: "absolute",
-                // bottom: 0,
-                // left: 16,
-                height: IsAndroid ? 68 : 75,
-                backgroundColor: "white",
-                borderTopRightRadius: IsIOS ? 19 : 0,
-                borderTopLeftRadius: IsIOS ? 19 : 0,
-                alignItems: "center",
-                justifyContent: "space-around",
                 maxWidth: 750,
-                marginHorizontal: "auto"
-            }
+                marginHorizontal: "auto",
+                position: "absolute",
+                borderTopLeftRadius: IsAndroid ? 0 : IsIPAD ? scale(15) : scale(10),
+                borderTopRightRadius: IsAndroid
+                    ? 0
+                    : IsIPAD
+                        ? scale(20)
+                        : scale(10),
+                borderTopWidth: 0,
+                height: verticalScale(55),
+                opacity: 1,
+            },
+            tabBarActiveTintColor: theme.dark ? "#fff" : "#021940",
+            tabBarInactiveTintColor: theme.dark ? "#fff" : "#8e8e93",
+            tabBarBackground: () => {
+                return (
+                    <>
+                        {IsIOS && !theme.dark ? (
+                            <View
+                                style={{
+                                    ...StyleSheet.absoluteFillObject,
+                                    backgroundColor: "#fff",
+                                    borderTopLeftRadius: IsAndroid
+                                        ? 0
+                                        : IsIPAD
+                                            ? scale(25)
+                                            : scale(35),
+                                    borderTopRightRadius: IsAndroid
+                                        ? 0
+                                        : IsIPAD
+                                            ? scale(25)
+                                            : scale(35),
+                                    overflow: "hidden",
+                                }}
+                            />
+                        ) : (
+                            <BlurView
+                                intensity={theme.dark ? (IsAndroid ? 10 : 60) : 100}
+                                style={{
+                                    ...StyleSheet.absoluteFillObject,
+                                    borderTopLeftRadius: IsAndroid
+                                        ? 0
+                                        : IsIPAD
+                                            ? scale(25)
+                                            : scale(35),
+                                    borderTopRightRadius: IsAndroid
+                                        ? 0
+                                        : IsIPAD
+                                            ? scale(25)
+                                            : scale(35),
+                                    overflow: "hidden",
+                                    backgroundColor: IsAndroid
+                                        ? theme.dark
+                                            ? "#131313"
+                                            : "#fff"
+                                        : theme.dark
+                                            ? "transparent"
+                                            : "#fff",
+                                }}
+                            />
+                        )}
+                    </>
+                );
+            },
         }}>
             <Tabs.Screen
                 name="index"
                 options={{
-                    tabBarIcon: ({ focused }) => (
+                    tabBarIcon: ({ focused, color }) => (
                         <View style={{
                             alignItems: "center",
                             paddingTop: 10,
@@ -34,14 +91,15 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "home" : "home-outline"}
-                                color={focused ? "#021940" : "gray"}
+                                color={color}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#021940" : "gray",
+                                    color: color,
                                     fontSize: 12,
-                                    marginTop: 4
+                                    marginTop: 4,
+                                    fontWeight: focused ? "bold" : "medium"
                                 }}
                             >
                                 Home
@@ -53,7 +111,7 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name="courses/index"
                 options={{
-                    tabBarIcon: ({ focused }) => (
+                    tabBarIcon: ({ focused, color }) => (
                         <View style={{
                             alignItems: "center",
                             paddingTop: 10,
@@ -61,14 +119,15 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "book" : "book-outline"}
-                                color={focused ? "#021940" : "gray"}
+                                color={color}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#021940" : "gray",
+                                    color: color,
                                     fontSize: 12,
-                                    marginTop: 4
+                                    marginTop: 4,
+                                    fontWeight: focused ? "bold" : "medium"
                                 }}
                             >
                                 Courses
@@ -85,12 +144,12 @@ export default function TabsLayout() {
                             style={{
                                 height: 60,
                                 width: 60,
-                                backgroundColor: "#021940",
+                                backgroundColor: theme.dark ? "#fff" : "#021940",
                                 marginBottom: 30
                             }}>
                             <Ionicons
                                 name={"add"}
-                                color={"white"}
+                                color={theme.dark ? "#021940" : "#fff"}
                                 size={24}
                             />
 
@@ -101,7 +160,7 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name="profile/index"
                 options={{
-                    tabBarIcon: ({ focused }) => (
+                    tabBarIcon: ({ focused, color }) => (
                         <View style={{
                             alignItems: "center",
                             paddingTop: 10,
@@ -109,14 +168,15 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "person" : "person-outline"}
-                                color={focused ? "#021940" : "gray"}
+                                color={color}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#021940" : "gray",
+                                    color: color,
                                     fontSize: 12,
-                                    marginTop: 4
+                                    marginTop: 4,
+                                    fontWeight: focused ? "bold" : "medium"
                                 }}
                             >
                                 Profile
@@ -128,7 +188,7 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name="resources/index"
                 options={{
-                    tabBarIcon: ({ focused }) => (
+                    tabBarIcon: ({ focused, color }) => (
                         <View style={{
                             alignItems: "center",
                             paddingTop: 10,
@@ -136,14 +196,15 @@ export default function TabsLayout() {
                         }}>
                             <Ionicons
                                 name={focused ? "document-text" : "document-text-outline"}
-                                color={focused ? "#021940" : "gray"}
+                                color={color}
                                 size={24}
                             />
                             <Text
                                 style={{
-                                    color: focused ? "#021940" : "gray",
+                                    color: color,
                                     fontSize: 12,
-                                    marginTop: 4
+                                    marginTop: 4,
+                                    fontWeight: focused ? "bold" : "medium"
                                 }}
                             >
                                 Resources
