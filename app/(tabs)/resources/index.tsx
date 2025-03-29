@@ -1,9 +1,7 @@
-import { View, Text } from 'react-native'
+import ResourcesScreen from '@/screens/resources/ResourcesScreen'
 
 export default function Resources() {
     return (
-        <View>
-            <Text>Resources</Text>
-        </View>
+        <ResourcesScreen />
     )
 }
