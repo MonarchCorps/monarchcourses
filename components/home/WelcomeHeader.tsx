@@ -97,7 +97,7 @@ export default function WelcomeHeader() {
             </View>
             <View className='relative'>
                 <TextInput
-                    className={`font-pregular ${theme.dark ? "border-1 border-white text-white bg-transparent" : "bg-white color-black"}`}
+                    className={`font-pregular ${theme.dark ? "border-[1px] border-white text-white bg-transparent" : "bg-white color-black"}`}
                     placeholder='Search for Topics, Courses'
                     placeholderTextColor={theme.dark ? "#fff" : "#000"}
                     style={[styles.input]}
