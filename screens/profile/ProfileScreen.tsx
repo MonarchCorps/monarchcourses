@@ -125,7 +125,10 @@ export default function ProfileScreen() {
                     size={scale(23)}
                     color={theme.dark ? "#fff" : "#0047AB"}
                 />
-            )
+            ),
+            onPress() {
+                router.push("/(routes)/settings")
+            },
         },
         {
             id: 7,
@@ -280,7 +283,6 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
     header: {
-        // height: verticalScale(180),
         height: IsHaveNotch
             ? IsIPAD
                 ? verticalScale(165)
@@ -288,9 +290,6 @@ const styles = StyleSheet.create({
             : IsAndroid
                 ? verticalScale(168)
                 : verticalScale(162),
-        // borderBottomLeftRadius: scale(20),
-        // borderBottomRightRadius: scale(20),
-        // padding: scale(20)
         paddingHorizontal: scale(25),
         borderBottomLeftRadius: moderateScale(40),
         borderBottomRightRadius: moderateScale(40),
