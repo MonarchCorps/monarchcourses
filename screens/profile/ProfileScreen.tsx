@@ -32,6 +32,14 @@ import {
     verticalScale
 } from "react-native-size-matters";
 
+type PressableContentType = {
+    id: number;
+    title: string;
+    subTitle: string;
+    icon: any;
+    onPress?: () => void
+}
+
 export default function ProfileScreen() {
     const { theme } = useTheme()
     const { auth } = useAuth()
@@ -40,14 +48,6 @@ export default function ProfileScreen() {
         await removeUserDetails()
         await removeAccessToken()
         await removeRefreshToken()
-    }
-
-    type PressableContentType = {
-        id: number;
-        title: string;
-        subTitle: string;
-        icon: any;
-        onPress?: () => void
     }
 
     const pressableContent: PressableContentType[] = [
@@ -98,7 +98,10 @@ export default function ProfileScreen() {
                     size={scale(22)}
                     color={theme.dark ? "#fff" : "#0047AB"}
                 />
-            )
+            ),
+            onPress() {
+                router.push("/(routes)/support-center")
+            },
         },
         {
             id: 5,
