@@ -15,7 +15,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon-android.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000"
       },
       "package": "com.monarchcorps.monarchcourses"
     },
@@ -29,9 +29,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash.png",
+          "image": "./assets/images/icon-android.png",
+          "imageWidth": 200,
           "resizeMode": "cover",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000"
         }
       ],
       "expo-secure-store",

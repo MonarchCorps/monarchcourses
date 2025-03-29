@@ -186,34 +186,6 @@ export default function TabsLayout() {
                 }}
             />
             <Tabs.Screen
-                name="profile/index"
-                options={{
-                    tabBarIcon: ({ focused, color }) => (
-                        <View style={{
-                            alignItems: "center",
-                            paddingTop: 10,
-                            width: windowWidth(80)
-                        }}>
-                            <Ionicons
-                                name={focused ? "person" : "person-outline"}
-                                color={color}
-                                size={24}
-                            />
-                            <Text
-                                style={{
-                                    color: color,
-                                    fontSize: 12,
-                                    marginTop: 4,
-                                    fontWeight: focused ? "bold" : "medium"
-                                }}
-                            >
-                                Profile
-                            </Text>
-                        </View>
-                    )
-                }}
-            />
-            <Tabs.Screen
                 name="resources/index"
                 options={{
                     headerShown: true,
@@ -264,6 +236,34 @@ export default function TabsLayout() {
                                 }}
                             >
                                 Resources
+                            </Text>
+                        </View>
+                    )
+                }}
+            />
+            <Tabs.Screen
+                name="profile/index"
+                options={{
+                    tabBarIcon: ({ focused, color }) => (
+                        <View style={{
+                            alignItems: "center",
+                            paddingTop: 10,
+                            width: windowWidth(80)
+                        }}>
+                            <Ionicons
+                                name={focused ? "person" : "person-outline"}
+                                color={color}
+                                size={24}
+                            />
+                            <Text
+                                style={{
+                                    color: color,
+                                    fontSize: 12,
+                                    marginTop: 4,
+                                    fontWeight: focused ? "bold" : "medium"
+                                }}
+                            >
+                                Profile
                             </Text>
                         </View>
                     )
