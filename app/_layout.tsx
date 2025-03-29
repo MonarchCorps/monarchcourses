@@ -47,6 +47,8 @@ export default function RootLayout() {
 										headerShown: false
 									}}>
 										<Stack.Screen name="index" />
+										<Stack.Screen name="(routes)/onboarding/index" />
+										<Stack.Screen name="(routes)/notification/index" />
 									</Stack>
 								</TokenExpiredProvider>
 							</ThemeProvider>
