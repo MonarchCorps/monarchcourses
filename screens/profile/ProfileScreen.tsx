@@ -86,7 +86,10 @@ export default function ProfileScreen() {
                     size={scale(22)}
                     color={theme.dark ? "#fff" : "#0047AB"}
                 />
-            )
+            ),
+            onPress() {
+                router.push("/(routes)/tickets")
+            }
         },
         {
             id: 4,
