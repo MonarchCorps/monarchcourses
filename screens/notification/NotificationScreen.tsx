@@ -1,14 +1,13 @@
+import Header from '@/components/common/Header'
 import { NotificationsData } from '@/constants'
 import useTheme from '@/hooks/useTheme'
 import { fontSizes } from '@/themes/App'
-import { AntDesign, MaterialIcons } from '@expo/vector-icons'
-import { router } from 'expo-router'
+import { MaterialIcons } from '@expo/vector-icons'
 import { MotiView } from 'moti'
 import { Skeleton } from 'moti/skeleton'
 import { useState } from 'react'
 import {
     FlatList,
-    Image,
     Pressable,
     ScrollView,
     StyleSheet,
@@ -118,59 +117,7 @@ export default function NotificationScreen() {
             className={`flex-1 ${theme.dark ? "bg-[#101010]" : "bg-[#fff]"}`}
             edges={["top"]}
         >
-            <View
-                className='overflow-hidden'
-                style={{
-                    paddingBottom: verticalScale(1)
-                }}
-            >
-                <View
-                    className={`flex-row items-center ${theme.dark ? "bg-[#131313] text-[#fff]" : "bg-[#fff] text-[#000]"}`}
-                    style={{
-                        height: verticalScale(25),
-                        paddingHorizontal: scale(8),
-                        paddingBottom: theme.dark ? verticalScale(5) : verticalScale(0),
-                        shadowOpacity: 0.1,
-                        shadowOffset: {
-                            width: 0,
-                            height: 1
-                        },
-                        shadowRadius: 1,
-                        elevation: 5
-                    }}
-                >
-                    <Pressable
-                        onPress={() => router.back()}
-                        className='flex-row items-center'
-                        style={{
-                            gap: scale(5)
-                        }}
-                    >
-                        <AntDesign
-                            name='left'
-                            size={scale(22)}
-                            color={theme.dark ? "#fff" : "#000"}
-                        />
-                        <Text
-                            className={`${theme.dark ? "text-[#fff]" : "text-[#000]"}`}
-                            style={{
-                                fontSize: fontSizes.FONT20
-                            }}
-                        >
-                            Back
-                        </Text>
-                    </Pressable>
-                    <Text
-                        className={`text-center ${theme.dark ? "text-[#fff]" : "text-[#000]"}`}
-                        style={{
-                            width: scale(220),
-                            fontSize: fontSizes.FONT22
-                        }}
-                    >
-                        Notifications
-                    </Text>
-                </View>
-            </View>
+            <Header title='Notifications' />
             <View
                 style={[
                     styles.container,
