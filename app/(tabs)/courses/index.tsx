@@ -1,9 +1,7 @@
-import { View, Text } from 'react-native'
+import CoursesScreen from '@/screens/courses/CoursesScreen'
 
 export default function Courses() {
     return (
-        <View>
-            <Text>Courses</Text>
-        </View>
+        <CoursesScreen />
     )
 }
