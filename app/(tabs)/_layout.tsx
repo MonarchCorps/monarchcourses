@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { IsAndroid, IsIOS, IsIPAD, windowWidth } from "@/themes/App";
+import { fontSizes, IsAndroid, IsIOS, IsIPAD, windowWidth } from "@/themes/App";
 import useTheme from "@/hooks/useTheme";
 import { scale, verticalScale } from "react-native-size-matters";
 import { BlurView } from "expo-blur"
@@ -111,6 +111,34 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name="courses/index"
                 options={{
+                    headerShown: true,
+                    headerTitle: "Courses",
+                    headerTitleStyle: {
+                        color: theme.dark ? "#fff" : "#000",
+                        textAlign: "center",
+                        width: "auto",
+                        fontSize: fontSizes.FONT22,
+                        fontFamily: "Poppins-Regular",
+                    },
+                    headerBackgroundContainerStyle: {
+                        backgroundColor: theme.dark ? "#131313" : "#fff",
+                        shadowColor: theme.dark ? "#fff" : "#000",
+                        shadowOpacity: theme.dark ? 0.1 : 0.1,
+                        shadowOffset: { width: 0, height: 1 },
+                        shadowRadius: 1,
+                        elevation: 1,
+                    },
+                    headerBackground: () => (
+                        <BlurView
+                            intensity={theme.dark ? 70 : 80}
+                            style={{
+                                borderTopLeftRadius: scale(20),
+                                borderTopRightRadius: scale(20),
+                                overflow: "hidden",
+                                backgroundColor: "transparent",
+                            }}
+                        />
+                    ),
                     tabBarIcon: ({ focused, color }) => (
                         <View style={{
                             alignItems: "center",
@@ -188,6 +216,34 @@ export default function TabsLayout() {
             <Tabs.Screen
                 name="resources/index"
                 options={{
+                    headerShown: true,
+                    headerTitle: "Video Lessons",
+                    headerTitleStyle: {
+                        color: theme.dark ? "#fff" : "#000",
+                        textAlign: "center",
+                        width: "auto",
+                        fontSize: fontSizes.FONT22,
+                        fontFamily: "Poppins-Regular",
+                    },
+                    headerBackgroundContainerStyle: {
+                        backgroundColor: theme.dark ? "#131313" : "#fff",
+                        shadowColor: theme.dark ? "#fff" : "#000",
+                        shadowOpacity: theme.dark ? 0.1 : 0.1,
+                        shadowOffset: { width: 0, height: 1 },
+                        shadowRadius: 1,
+                        elevation: 1,
+                    },
+                    headerBackground: () => (
+                        <BlurView
+                            intensity={theme.dark ? 70 : 80}
+                            style={{
+                                borderTopLeftRadius: scale(20),
+                                borderTopRightRadius: scale(20),
+                                overflow: "hidden",
+                                backgroundColor: "transparent",
+                            }}
+                        />
+                    ),
                     tabBarIcon: ({ focused, color }) => (
                         <View style={{
                             alignItems: "center",
