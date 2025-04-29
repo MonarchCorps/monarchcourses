@@ -122,17 +122,10 @@ export default function WelcomeHeader() {
 
 const styles = StyleSheet.create({
     headerWrapper: {
-        height: IsHaveNotch
-            ? IsIPAD
-                ? verticalScale(165)
-                : verticalScale(165)
-            : IsAndroid
-                ? verticalScale(168)
-                : verticalScale(162),
         paddingHorizontal: scale(25),
         borderBottomLeftRadius: moderateScale(40),
         borderBottomRightRadius: moderateScale(40),
-        paddingTop: IsAndroid ? verticalScale(10) : verticalScale(15)
+        paddingVertical: verticalScale(15)
     },
     dot: {
         width: scale(13.5),
@@ -149,6 +142,7 @@ const styles = StyleSheet.create({
         fontSize: IsIPAD
             ? fontSizes.FONT15 : fontSizes.FONT19,
         borderRadius: moderateScale(30),
-        paddingHorizontal: scale(15)
+        paddingHorizontal: scale(15),
+        paddingRight: scale(40)
     }
 })

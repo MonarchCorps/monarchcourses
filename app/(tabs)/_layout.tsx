@@ -3,7 +3,7 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { fontSizes, IsAndroid, IsIOS, IsIPAD, windowWidth } from "@/themes/App";
 import useTheme from "@/hooks/useTheme";
-import { scale, verticalScale } from "react-native-size-matters";
+import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import { BlurView } from "expo-blur"
 
 export default function TabsLayout() {
@@ -14,8 +14,6 @@ export default function TabsLayout() {
             headerShown: false,
             tabBarShowLabel: false,
             tabBarStyle: {
-                maxWidth: 750,
-                marginHorizontal: "auto",
                 position: "absolute",
                 borderTopLeftRadius: IsAndroid ? 0 : IsIPAD ? scale(15) : scale(10),
                 borderTopRightRadius: IsAndroid
@@ -92,12 +90,12 @@ export default function TabsLayout() {
                             <Ionicons
                                 name={focused ? "home" : "home-outline"}
                                 color={color}
-                                size={24}
+                                size={moderateScale(20)}
                             />
                             <Text
                                 style={{
                                     color: color,
-                                    fontSize: 12,
+                                    fontSize: moderateScale(12),
                                     marginTop: 4,
                                     fontWeight: focused ? "bold" : "medium"
                                 }}
@@ -148,12 +146,12 @@ export default function TabsLayout() {
                             <Ionicons
                                 name={focused ? "book" : "book-outline"}
                                 color={color}
-                                size={24}
+                                size={moderateScale(20)}
                             />
                             <Text
                                 style={{
                                     color: color,
-                                    fontSize: 12,
+                                    fontSize: moderateScale(12),
                                     marginTop: 4,
                                     fontWeight: focused ? "bold" : "medium"
                                 }}
@@ -170,15 +168,15 @@ export default function TabsLayout() {
                     tabBarIcon: () => (
                         <View className="items-center justify-center rounded-full"
                             style={{
-                                height: 60,
-                                width: 60,
+                                height: moderateScale(60),
+                                width: moderateScale(60),
                                 backgroundColor: theme.dark ? "#fff" : "#021940",
                                 marginBottom: 30
                             }}>
                             <Ionicons
                                 name={"add"}
                                 color={theme.dark ? "#021940" : "#fff"}
-                                size={24}
+                                size={moderateScale(20)}
                             />
 
                         </View>
@@ -225,12 +223,12 @@ export default function TabsLayout() {
                             <Ionicons
                                 name={focused ? "document-text" : "document-text-outline"}
                                 color={color}
-                                size={24}
+                                size={moderateScale(20)}
                             />
                             <Text
                                 style={{
                                     color: color,
-                                    fontSize: 12,
+                                    fontSize: moderateScale(12),
                                     marginTop: 4,
                                     fontWeight: focused ? "bold" : "medium"
                                 }}
@@ -253,12 +251,12 @@ export default function TabsLayout() {
                             <Ionicons
                                 name={focused ? "person" : "person-outline"}
                                 color={color}
-                                size={24}
+                                size={moderateScale(20)}
                             />
                             <Text
                                 style={{
                                     color: color,
-                                    fontSize: 12,
+                                    fontSize: moderateScale(12),
                                     marginTop: 4,
                                     fontWeight: focused ? "bold" : "medium"
                                 }}

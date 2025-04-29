@@ -13,7 +13,8 @@ import {
     windowWidth,
 } from "@/themes/App";
 import useTheme from "@/hooks/useTheme";
-import { scale, verticalScale } from "react-native-size-matters";
+import { moderateScale, scale, verticalScale } from "react-native-size-matters";
+import { responsiveWidth } from "react-native-responsive-dimensions"
 
 export default function SourceCodeCard({
     item,
@@ -52,7 +53,8 @@ export default function SourceCodeCard({
                         uri: item?.thumbnail,
                     }}
                     style={{
-                        width: SCREEN_WIDTH - 52,
+                        // width: SCREEN_WIDTH - 52,
+                        width: responsiveWidth(90),
                         height: (SCREEN_WIDTH - 40) * 0.5625,
                         borderRadius: windowWidth(5),
                     }}

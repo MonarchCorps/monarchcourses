@@ -9,6 +9,7 @@ import {
     Modal,
     TextInput,
     ActivityIndicator,
+    ScrollView,
 } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
 import SupportBannerOne from "@/assets/svgs/support-center/one";
@@ -67,7 +68,7 @@ export default function SupportCenterScreen() {
     ];
 
     return (
-        <View className={`flex-1 ${theme.dark ? "bg-[#101010]" : "bg-[#fff]"}`}>
+        <ScrollView className={`flex-1 ${theme.dark ? "bg-[#101010]" : "bg-[#fff]"}`}>
             <View
                 className="relative overflow-hidden"
                 style={{
@@ -291,6 +292,6 @@ export default function SupportCenterScreen() {
                     </Pressable>
                 </Modal>
             )}
-        </View>
+        </ScrollView>
     );
 }
